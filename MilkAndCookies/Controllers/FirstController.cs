@@ -22,7 +22,7 @@ namespace MilkAndCookies.Controllers
             //This is setting the expire time to 5 minutes
             var co = new CookieOptions
             {
-                Expires = DateTimeOffset.Now.AddMinutes(5)
+                Expires = DateTimeOffset.Now.AddMinutes(-5)
             };
             
             //This is my cookie

@@ -1,3 +1,5 @@
+using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -22,8 +24,14 @@ namespace MilkAndCookies.Controllers
         [HttpGet]
         public string Get(string flavor)
         {
+            //This is setting the expire time to 5 minutes
+            var co = new CookieOptions
+            {
+                Expires = DateTimeOffset.Now.AddMinutes(5)
+            };
+            
             //This is my cookie
-            Response.Cookies.Append("favoriteMilkshake", flavor);
+            Response.Cookies.Append("favoriteMilkshake", flavor, co);
             
             return flavor;
         }

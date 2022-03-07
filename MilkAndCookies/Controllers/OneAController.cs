@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 
 namespace MilkAndCookies.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class OneAController : ControllerBase
     {
         private static readonly string[] Flavor = new[]
@@ -21,17 +23,35 @@ namespace MilkAndCookies.Controllers
         }
         
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public string Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Flavor[rng.Next(Flavor.Length)]
-                })
-                .ToArray();
+            Console.WriteLine("pick your favorite milkshake ");
+            Console.WriteLine("A: " + Flavor[0] + ", B: " + Flavor[1] + ", C: " + Flavor[2] + " or D: " + Flavor[3]);
+            String userInput = Console.ReadLine();
+
+            if (userInput == "A" || userInput == "a")
+            {
+                //Response.
+
+                Console.WriteLine("you picked " + Flavor[0]);
+            }
+            if (userInput == "B" || userInput == "b")
+            {
+                Console.WriteLine("you picked " + Flavor[1]);
+            }
+            if (userInput == "C" || userInput == "c")
+            {
+                Console.WriteLine("you picked " + Flavor[2]);
+            }
+            if (userInput == "D" || userInput == "d")
+            {
+                Console.WriteLine("you picked " + Flavor[3]);
+            }
+            Response.Cookies.Append("favoriteMilkshake", userInput);
+            return userInput;
+            
         }
+        
         
     }
 }

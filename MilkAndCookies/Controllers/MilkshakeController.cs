@@ -10,7 +10,7 @@ namespace MilkAndCookies.Controllers
     public class MilkshakeController : ControllerBase
     {
         private readonly ILogger<MilkshakeController> _logger;
-
+        
         public MilkshakeController(ILogger<MilkshakeController> logger)
         {
             _logger = logger;
